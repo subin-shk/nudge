@@ -269,6 +269,17 @@ and that is disabled unless a publish provider is configured.
 
 ---
 
-## Licence
+## Usage
 
-MIT
+You may download and use the official Nudge releases for personal,
+non-commercial use.
+
+The source code is proprietary. You may not copy, modify, redistribute, or use
+it to create derivative works without prior written permission.
+
+---
+
+## License
+
+This project is proprietary and is not licensed for copying, modification,
+redistribution, or commercial use. All rights reserved.
