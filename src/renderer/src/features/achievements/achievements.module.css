@@ -1,0 +1,104 @@
+/* Badge gallery. */
+
+.tierSection {
+  margin-bottom: var(--space-8);
+}
+
+.tierTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 650;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.tierDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+  gap: var(--space-4);
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  /* Locked badges recede rather than disappear — they are still the goal. */
+  opacity: 0.7;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.badgeUnlocked {
+  opacity: 1;
+}
+
+.medal {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md);
+  color: #fff;
+}
+
+.medalLocked {
+  background: var(--bg-inset) !important;
+  color: var(--text-faint);
+}
+
+/* Tier colours are literal metals — they must read the same in every theme,
+   so these are the one intentional exception to the token rule. */
+.bronze {
+  background: linear-gradient(135deg, #c98b4d, #a9682f);
+}
+.silver {
+  background: linear-gradient(135deg, #c9ced8, #98a0ad);
+}
+.gold {
+  background: linear-gradient(135deg, #f2c94c, #d19b1b);
+}
+
+.badgeText {
+  flex: 1;
+}
+
+.badgeTitle {
+  font-size: var(--text-base);
+  font-weight: 620;
+}
+
+.badgeDesc {
+  margin-top: 2px;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.badgeEarned {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--success);
+  font-weight: 550;
+}
+
+.badgeProgress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.badgeProgressLabel {
+  font-size: var(--text-sm);
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}

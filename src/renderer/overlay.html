@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'"
+    />
+    <title>Nudge Break</title>
+    <style>
+      /* Transparent window: the scrim is painted by the overlay's own CSS so it
+         can follow the active theme. */
+      html,
+      body,
+      #root {
+        background: transparent !important;
+        overflow: hidden;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/overlay.tsx"></script>
+  </body>
+</html>

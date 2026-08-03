@@ -1,0 +1,163 @@
+/* First-run setup overlay. */
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--space-6);
+  background: var(--scrim);
+  backdrop-filter: blur(6px);
+  animation: nudge-fade-in var(--duration-slow) var(--ease-out);
+}
+
+.panel {
+  width: min(620px, 100%);
+  max-height: min(680px, 92vh);
+  overflow-y: auto;
+  padding: var(--space-8) !important;
+  animation: nudge-pop-in var(--duration-slow) var(--ease-spring);
+}
+
+.progress {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: var(--space-6);
+}
+
+.progressDot {
+  width: 26px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--bg-inset);
+  transition: background-color var(--duration-base) var(--ease-out);
+}
+
+.progressDotActive {
+  background: var(--accent);
+}
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+}
+
+.hero {
+  display: grid;
+  place-items: center;
+  width: 168px;
+  height: 168px;
+  margin-bottom: var(--space-2);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 640;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-2);
+}
+
+.body {
+  font-size: var(--text-md);
+  color: var(--text-muted);
+  max-width: 46ch;
+  line-height: 1.6;
+}
+
+/* choices */
+
+.choiceList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border);
+  background: var(--bg-subtle);
+  text-align: left;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.choice:hover {
+  border-color: var(--border-strong);
+}
+
+.choiceActive {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.choiceEmoji {
+  font-size: 22px;
+  width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.choiceText {
+  flex: 1;
+  min-width: 0;
+}
+
+.choiceTitle {
+  display: block;
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.choiceHint {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.choiceCheck {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: var(--accent);
+}
+
+.mascotChoice {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+/* actions */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+.actionsSpacer {
+  flex: 1;
+}

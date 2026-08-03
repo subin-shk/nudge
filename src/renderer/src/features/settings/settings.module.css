@@ -1,0 +1,217 @@
+/* Settings screen. */
+
+.tabs {
+  display: flex;
+  gap: var(--space-1);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+.tab:hover {
+  background: var(--bg-subtle);
+  color: var(--text);
+}
+.tabActive {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ========================================================= theme grid == */
+
+.themeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: var(--space-3);
+}
+
+.themeCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border);
+  background: var(--bg-subtle);
+  text-align: left;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+.themeCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+}
+.themeCardActive {
+  border-color: var(--accent);
+}
+
+/* A miniature of the app: page, card, accent pill. Communicates a theme far
+   faster than a colour swatch row.
+   `display: block` is required — these are spans, and a bare `height` on an
+   inline box is ignored, so the swatch would occupy space without painting. */
+.themeSwatch {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 62px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--swatch-page);
+}
+.themeSwatchCard {
+  display: block;
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 12px;
+  height: 26px;
+  border-radius: 5px;
+  background: var(--swatch-card);
+}
+.themeSwatchAccent {
+  display: block;
+  position: absolute;
+  left: 14px;
+  bottom: 10px;
+  width: 34px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--swatch-accent);
+}
+
+.themeName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 0 var(--space-1) var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: 550;
+}
+
+/* accent */
+
+.accentRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.accentDot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  box-shadow: inset 0 0 0 2px var(--bg-elevated);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+.accentDot:hover {
+  transform: scale(1.12);
+}
+.accentDotActive {
+  border-color: var(--text);
+}
+
+.accentAuto {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px dashed var(--border-strong);
+  color: var(--text-faint);
+}
+
+/* shortcuts */
+
+.shortcutButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 168px;
+  height: 34px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  color: var(--text);
+  justify-content: center;
+}
+.shortcutButton:hover {
+  border-color: var(--border-strong);
+}
+.shortcutRecording {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+  animation: nudge-pulse-ring 1.4s var(--ease-in-out) infinite;
+}
+.shortcutUnbound {
+  color: var(--text-faint);
+  font-family: var(--font-sans);
+}
+
+/* mascot */
+
+.mascotPreview {
+  display: grid;
+  place-items: end center;
+  height: 190px;
+  padding-bottom: var(--space-4);
+  border-radius: var(--radius-md);
+  background:
+    radial-gradient(120% 90% at 50% 100%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%),
+    var(--bg-subtle);
+  overflow: hidden;
+}
+
+.skinRow {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* data */
+
+.dataRow {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-items: flex-start;
+}
+
+.version {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}

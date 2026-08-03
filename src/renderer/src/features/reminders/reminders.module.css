@@ -1,0 +1,128 @@
+/* Reminder configuration screen. */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  text-align: left;
+}
+
+.badge {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--card-tone) 16%, transparent);
+  color: var(--card-tone);
+  font-size: 18px;
+}
+
+.headText {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.summary {
+  margin-top: 2px;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.expand {
+  color: var(--text-faint);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.expandOpen {
+  transform: rotate(90deg);
+}
+
+/* The body animates open with a grid-rows trick so it works with content of
+   unknown height — no JS measurement, no hard-coded max-height. */
+.bodyWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-slow) var(--ease-out);
+}
+
+.bodyWrapOpen {
+  grid-template-rows: 1fr;
+}
+
+.body {
+  overflow: hidden;
+}
+
+.bodyInner {
+  padding-top: var(--space-4);
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.subhead {
+  margin: var(--space-5) 0 var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: 620;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* schedule */
+
+.timeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.timePill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 30px;
+  padding: 0 var(--space-2) 0 var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.timePillRemove {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: var(--text-faint);
+}
+
+.timePillRemove:hover {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.snoozeRow {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}

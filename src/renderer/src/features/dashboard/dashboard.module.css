@@ -1,0 +1,234 @@
+/* Dashboard layout. */
+
+.greeting {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.date {
+  font-size: var(--text-base);
+  color: var(--text-faint);
+}
+
+/* Auto-fit keeps four tiles on a wide window and reflows to two, then one,
+   without a single media query. */
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(184px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+@media (max-width: 1000px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+/* ======================================================= status banner == */
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--warning-soft);
+  color: var(--warning);
+  font-size: var(--text-base);
+  font-weight: 500;
+  animation: nudge-rise-in var(--duration-base) var(--ease-out);
+}
+
+.bannerAction {
+  margin-left: auto;
+}
+
+/* ========================================================== focus card == */
+
+.focusCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-6);
+}
+
+.focusTime {
+  font-size: var(--text-3xl);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.focusPhase {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.focusActions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quickStarts {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ====================================================== reminder cards == */
+
+.reminderList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.reminderRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+  border: 1px solid transparent;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.reminderRow:hover {
+  border-color: var(--border);
+}
+
+/* A reminder waiting on the user gets a soft accent wash — noticeable at a
+   glance without becoming an alert. */
+.reminderRowDue {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.reminderIcon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--row-tone) 16%, transparent);
+  color: var(--row-tone);
+}
+
+.reminderInfo {
+  min-width: 0;
+  flex: 1;
+}
+
+.reminderName {
+  font-size: var(--text-base);
+  font-weight: 550;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reminderMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: 2px;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.reminderProgress {
+  width: 84px;
+  flex-shrink: 0;
+}
+
+.reminderActions {
+  display: flex;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+/* ========================================================= quick toggles */
+
+.toggleList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+}
+
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-base);
+  flex: 1;
+  min-width: 0;
+}
+
+.toggleEmoji {
+  font-size: 15px;
+  width: 20px;
+  text-align: center;
+}
+
+/* ============================================================ goal list = */
+
+.goalRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  font-size: var(--text-sm);
+}
+
+.goalName {
+  flex: 1;
+  color: var(--text-muted);
+}
+
+.goalCount {
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  font-weight: 550;
+}
+
+.goalMet {
+  color: var(--success);
+}

@@ -1,0 +1,64 @@
+/* Statistics screen layout. */
+
+.filterRow {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.filterChip {
+  height: 32px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  font-size: var(--text-sm);
+  font-weight: 550;
+  color: var(--text-muted);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.filterChip:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.filterChipActive {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-fg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+/* Refetching holds the previous render rather than flashing a skeleton. */
+.refetching {
+  opacity: 0.55;
+}
+
+.tileGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(172px, 1fr));
+  gap: var(--space-4);
+}
+
+.chartGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+@media (max-width: 1000px) {
+  .chartGrid {
+    grid-template-columns: 1fr;
+  }
+}

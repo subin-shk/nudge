@@ -1,0 +1,188 @@
+/*
+ * Break overlay.
+ *
+ * Painted on a transparent always-on-top window, so the scrim colour here IS the
+ * dimming. It is intentionally not fully opaque: seeing your work faintly behind
+ * the break makes it feel like a pause rather than a lockout.
+ */
+
+.root {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(120% 90% at 50% 40%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%),
+    color-mix(in srgb, var(--bg) 94%, transparent);
+  backdrop-filter: blur(14px);
+  animation: nudge-fade-in 320ms var(--ease-out);
+}
+
+.leaving {
+  animation: break-fade-out 240ms var(--ease-out) forwards;
+}
+
+@keyframes break-fade-out {
+  to {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
+
+/* Secondary monitors: same information, half the presence. */
+.secondary {
+  backdrop-filter: blur(10px);
+}
+.secondary .content {
+  opacity: 0.55;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-8);
+  text-align: center;
+  animation: nudge-rise-in 460ms var(--ease-out) both;
+}
+
+.mascot {
+  margin-bottom: calc(var(--space-4) * -1);
+}
+
+/* ring */
+
+.ringWrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.ring {
+  transform: rotate(-90deg);
+}
+
+.ringTrack {
+  stroke: color-mix(in srgb, var(--text) 12%, transparent);
+}
+
+.ringFill {
+  stroke-linecap: round;
+  /* Linear, matching the one-second tick — an eased countdown ring looks like
+     it is lying about the time remaining. */
+  transition: stroke-dashoffset 1s linear;
+}
+
+.ringInner {
+  position: absolute;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.seconds {
+  font-size: 84px;
+  font-weight: 250;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.secondsUnit {
+  font-size: var(--text-lg);
+  color: var(--text-faint);
+}
+
+/* copy */
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 34ch;
+}
+
+.emoji {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.message {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+
+.sub {
+  font-size: var(--text-md);
+  color: var(--text-muted);
+}
+
+/* actions */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.primaryAction {
+  height: 44px;
+  padding: 0 var(--space-8);
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-size: var(--text-md);
+  font-weight: 600;
+  box-shadow: var(--shadow-3);
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+.primaryAction:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+.primaryAction:active {
+  transform: translateY(1px);
+}
+
+.secondaryAction {
+  height: 40px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--text) 8%, transparent);
+  color: var(--text-muted);
+  font-size: var(--text-base);
+  font-weight: 550;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+.secondaryAction:hover {
+  background: color-mix(in srgb, var(--text) 14%, transparent);
+  color: var(--text);
+}
+
+.ghostAction {
+  height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-full);
+  color: var(--text-faint);
+  font-size: var(--text-base);
+}
+.ghostAction:hover {
+  color: var(--text);
+}
+
+.hint {
+  font-size: var(--text-sm);
+  color: var(--text-faint);
+}

@@ -1,0 +1,71 @@
+appId: app.nudge.desktop
+productName: Nudge
+copyright: Copyright © 2026 Nudge
+
+directories:
+  buildResources: build
+  output: release/${version}
+
+# Only ship what the app actually needs at runtime.
+files:
+  - out/**/*
+  - resources/**/*
+  - '!**/*.map'
+  - '!**/{.eslintrc,.editorconfig,.prettierrc}'
+
+extraMetadata:
+  main: out/main/index.js
+
+# ---------------------------------------------------------------- Windows
+win:
+  # electron-builder derives the multi-resolution .ico from this 512px PNG.
+  icon: resources/icon.png
+  target:
+    - target: nsis
+      arch: [x64]
+  artifactName: ${productName}-Setup-${version}-${arch}.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: Nudge
+  deleteAppDataOnUninstall: false
+  # Nudge is a tray app: launching after install should feel instant, not modal.
+  runAfterFinish: true
+
+# ---------------------------------------------------------------- macOS (future)
+mac:
+  icon: resources/icon.png
+  category: public.app-category.healthcare-fitness
+  target:
+    - target: dmg
+      arch: [x64, arm64]
+  # The mascot needs to float above other windows; the break overlay needs
+  # to cover them. Neither requires extra entitlements, but Screen Recording
+  # is requested lazily by macOS only if we ever add screenshot features.
+  extendInfo:
+    LSUIElement: false
+    NSHighResolutionCapable: true
+
+# ---------------------------------------------------------------- Linux (future)
+linux:
+  icon: resources/icon.png
+  category: Utility
+  target:
+    - target: AppImage
+      arch: [x64]
+    - target: deb
+      arch: [x64]
+  desktop:
+    StartupNotify: 'false'
+    StartupWMClass: nudge
+
+# ---------------------------------------------------------------- Auto update
+# Wire a real provider here when you are ready to ship updates; electron-updater
+# is already integrated behind a feature flag (see src/main/system/updater.ts).
+publish:
+  - provider: generic
+    url: https://example.invalid/nudge/updates

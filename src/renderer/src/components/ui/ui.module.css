@@ -1,0 +1,715 @@
+/*
+ * Shared styles for the UI kit.
+ *
+ * One module for the whole kit rather than one per component: these primitives
+ * share a great deal (focus rings, disabled states, the surface recipe), and
+ * splitting them would duplicate that or force a fragile import chain. Feature
+ * screens get their own modules.
+ */
+
+/* Button */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-4);
+  height: 36px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  font-weight: 550;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+/* A 1px press translation reads as physical without moving the layout. */
+.button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.button:disabled {
+  opacity: 0.45;
+}
+
+.primary {
+  background: var(--accent);
+  color: var(--accent-fg);
+  box-shadow: var(--shadow-1);
+}
+.primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+  box-shadow: var(--shadow-2);
+}
+
+.secondary {
+  background: var(--bg-subtle);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.secondary:hover:not(:disabled) {
+  background: var(--bg-inset);
+  border-color: var(--border-strong);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--text-muted);
+}
+.ghost:hover:not(:disabled) {
+  background: var(--bg-subtle);
+  color: var(--text);
+}
+
+.danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border: 1px solid transparent;
+}
+.danger:hover:not(:disabled) {
+  border-color: var(--danger);
+}
+
+.soft {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.soft:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.sizeSm {
+  height: 30px;
+  padding: 0 var(--space-3);
+  font-size: var(--text-sm);
+}
+.sizeLg {
+  height: 44px;
+  padding: 0 var(--space-6);
+  font-size: var(--text-md);
+  border-radius: var(--radius-md);
+}
+.fullWidth {
+  width: 100%;
+}
+
+/* IconButton */
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+.iconButton:hover:not(:disabled) {
+  background: var(--bg-subtle);
+  color: var(--text);
+}
+.iconButton:disabled {
+  opacity: 0.4;
+}
+.iconButtonActive {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Chip */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 26px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  font-weight: 550;
+  border: 1px solid transparent;
+}
+.chipAccent {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.chipSuccess {
+  background: var(--success-soft);
+  color: var(--success);
+}
+.chipWarning {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+.chipInteractive {
+  cursor: pointer;
+}
+.chipInteractive:hover {
+  border-color: var(--border-strong);
+}
+.chipSelected {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+/* Card */
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  transition:
+    box-shadow var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-in-out);
+}
+.cardPad {
+  padding: var(--space-5);
+}
+.cardHoverable:hover {
+  box-shadow: var(--shadow-3);
+  border-color: var(--border-strong);
+}
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+.cardSubtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+/* Section */
+
+.section {
+  margin-bottom: var(--space-8);
+}
+.sectionHead {
+  margin-bottom: var(--space-4);
+}
+.sectionTitle {
+  font-size: var(--text-lg);
+  font-weight: 620;
+}
+.sectionDescription {
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  max-width: 62ch;
+}
+
+/* Field */
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border);
+}
+.field:last-child {
+  border-bottom: none;
+}
+.fieldStacked {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-3);
+}
+.fieldLabel {
+  font-size: var(--text-base);
+  font-weight: 500;
+}
+.fieldHint {
+  margin-top: 2px;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  max-width: 52ch;
+}
+.fieldControl {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.fieldDisabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Switch */
+
+.switch {
+  position: relative;
+  flex-shrink: 0;
+  width: 42px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background: var(--bg-inset);
+  border: 1px solid var(--border-strong);
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+.switchOn {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.switchThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-1);
+  /* A slight overshoot makes the toggle feel mechanical rather than linear. */
+  transition: transform var(--duration-base) var(--ease-spring);
+}
+.switchOn .switchThumb {
+  transform: translateX(18px);
+  background: var(--accent-fg);
+}
+.switch:disabled {
+  opacity: 0.4;
+}
+
+/* Slider */
+
+.slider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 180px;
+}
+.sliderInput {
+  flex: 1;
+  appearance: none;
+  height: 4px;
+  border-radius: var(--radius-full);
+  /* The filled portion is painted with a gradient driven by a CSS variable the
+     component sets, which avoids a second DOM node just for the track fill. */
+  background: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    var(--accent) var(--slider-fill, 50%),
+    var(--bg-inset) var(--slider-fill, 50%),
+    var(--bg-inset) 100%
+  );
+  cursor: pointer;
+}
+.sliderInput::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 2px solid var(--accent);
+  box-shadow: var(--shadow-1);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+.sliderInput:hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+.sliderInput:active::-webkit-slider-thumb {
+  transform: scale(0.95);
+}
+.sliderValue {
+  min-width: 52px;
+  text-align: right;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Select */
+
+.select {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.selectInput {
+  appearance: none;
+  height: 34px;
+  min-width: 150px;
+  padding: 0 var(--space-8) 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: var(--text-base);
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+.selectInput:hover {
+  border-color: var(--border-strong);
+}
+.selectChevron {
+  position: absolute;
+  right: var(--space-3);
+  pointer-events: none;
+  color: var(--text-faint);
+}
+
+/* NumberField */
+
+.numberField {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.numberField:focus-within {
+  border-color: var(--accent);
+}
+.numberInput {
+  width: 62px;
+  height: 100%;
+  padding: 0 var(--space-2);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--text-base);
+}
+.numberInput::-webkit-outer-spin-button,
+.numberInput::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+.numberStep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 100%;
+  color: var(--text-muted);
+}
+.numberStep:hover:not(:disabled) {
+  background: var(--bg-inset);
+  color: var(--text);
+}
+.numberSuffix {
+  padding-right: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--text-faint);
+}
+
+/* TextInput */
+
+.textInput {
+  width: 100%;
+  height: 34px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  font-size: var(--text-base);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+.textInput:hover {
+  border-color: var(--border-strong);
+}
+.textInput:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+.textInput::placeholder {
+  color: var(--text-faint);
+}
+.timeInput {
+  width: 104px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* SegmentedControl */
+
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-inset);
+}
+.segment {
+  padding: 0 var(--space-4);
+  height: 28px;
+  border-radius: calc(var(--radius-sm) - 2px);
+  font-size: var(--text-sm);
+  font-weight: 550;
+  color: var(--text-muted);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+.segment:hover:not(.segmentActive) {
+  color: var(--text);
+}
+.segmentActive {
+  background: var(--bg-elevated);
+  color: var(--text);
+  box-shadow: var(--shadow-1);
+}
+
+/* Tooltip */
+
+.tooltipWrapper {
+  position: relative;
+  display: inline-flex;
+}
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-dropdown);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-xs);
+  background: var(--text);
+  color: var(--bg);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--shadow-3);
+  animation: nudge-fade-in var(--duration-fast) var(--ease-out);
+}
+
+/* ProgressRing */
+
+.ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.ringSvg {
+  transform: rotate(-90deg);
+}
+.ringTrack {
+  stroke: var(--bg-inset);
+}
+.ringFill {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  /* Only animate when the value moves in normal-sized steps; the component
+     disables this during a reset so the ring does not unwind visibly. */
+  transition: stroke-dashoffset var(--duration-base) linear;
+}
+.ringContent {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+/* StatTile */
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-1);
+}
+.statHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.statIcon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-xs);
+  background: var(--tile-tone-soft, var(--accent-soft));
+  color: var(--tile-tone, var(--accent));
+}
+.statValue {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--text-2xl);
+  font-weight: 640;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.statUnit {
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.statFoot {
+  font-size: var(--text-sm);
+  color: var(--text-faint);
+}
+
+/* ProgressBar */
+
+.bar {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--bg-inset);
+  overflow: hidden;
+}
+.barFill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--bar-tone, var(--accent));
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+/* Modal */
+
+.modalScrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--space-6);
+  background: var(--scrim);
+  backdrop-filter: blur(3px);
+  animation: nudge-fade-in var(--duration-base) var(--ease-out);
+}
+.modal {
+  width: min(440px, 100%);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-4);
+  animation: nudge-pop-in var(--duration-base) var(--ease-spring);
+}
+.modalTitle {
+  font-size: var(--text-lg);
+  font-weight: 620;
+  margin-bottom: var(--space-2);
+}
+.modalBody {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
+}
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+/* Toast */
+
+.toastHost {
+  position: fixed;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  pointer-events: none;
+}
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  width: 320px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-3);
+  pointer-events: auto;
+  animation: nudge-slide-in-right var(--duration-slow) var(--ease-out);
+}
+.toastIcon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--accent);
+}
+.toastSuccess .toastIcon {
+  color: var(--success);
+}
+.toastWarning .toastIcon {
+  color: var(--warning);
+}
+.toastTitle {
+  font-size: var(--text-base);
+  font-weight: 550;
+}
+.toastBody {
+  margin-top: 2px;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+.toastClose {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--text-faint);
+}
+.toastClose:hover {
+  color: var(--text);
+}
+
+/* EmptyState */
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-12) var(--space-6);
+  text-align: center;
+  color: var(--text-muted);
+}
+.emptyIcon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-subtle);
+  color: var(--text-faint);
+}
+.emptyTitle {
+  font-size: var(--text-md);
+  font-weight: 550;
+  color: var(--text);
+}
+.emptyBody {
+  font-size: var(--text-sm);
+  max-width: 42ch;
+}

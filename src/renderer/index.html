@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      Content Security Policy: no remote origins at all.
+
+      Everything Nudge renders is bundled — no CDN, no web fonts, no analytics.
+      'unsafe-inline' is required for styles because the theme system writes CSS
+      custom properties onto :root at runtime; scripts have no such exemption.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' file: data:; font-src 'self' data:; connect-src 'self'"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nudge</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

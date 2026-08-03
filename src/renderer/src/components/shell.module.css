@@ -1,0 +1,258 @@
+/* The application frame: custom title bar, sidebar navigation, content pane. */
+
+.app {
+  display: grid;
+  grid-template-rows: var(--titlebar-height) 1fr;
+  height: 100%;
+  background: var(--bg);
+}
+
+/* title bar */
+
+.titleBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-left: var(--space-4);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  /* The whole strip drags; interactive children opt out with .noDrag. */
+  -webkit-app-region: drag;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+}
+
+.brandMark {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-xs);
+  background: linear-gradient(135deg, var(--tone-move), var(--tone-water));
+  color: #fff;
+}
+
+.titleStatus {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.windowControls {
+  display: flex;
+  margin-left: auto;
+  -webkit-app-region: no-drag;
+}
+
+.windowButton {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: var(--titlebar-height);
+  color: var(--text-muted);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+.windowButton:hover {
+  background: var(--bg-subtle);
+  color: var(--text);
+}
+/* The close button gets the conventional red hover — deviating from the OS
+   convention here would be novelty at the cost of muscle memory. */
+.windowClose:hover {
+  background: #e81123;
+  color: #fff;
+}
+
+.noDrag {
+  -webkit-app-region: no-drag;
+}
+
+/* body */
+
+.body {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  min-height: 0;
+}
+
+/* Below 860px the labels are dropped and the rail collapses to icons. */
+@media (max-width: 860px) {
+  .body {
+    grid-template-columns: 64px 1fr;
+  }
+  .navLabel,
+  .sidebarFooter {
+    display: none;
+  }
+  .navItem {
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+/* sidebar */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-right: 1px solid var(--border);
+  background: var(--bg);
+  min-height: 0;
+}
+
+.navItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 38px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: var(--text-base);
+  font-weight: 500;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+.navItem:hover {
+  background: var(--bg-subtle);
+  color: var(--text);
+}
+.navItemActive {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+/* The active indicator is a pseudo-element so no extra node is needed. */
+.navItemActive::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+}
+
+.navBadge {
+  margin-left: auto;
+  min-width: 20px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  display: grid;
+  place-items: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.sidebarSpacer {
+  flex: 1;
+}
+
+.sidebarFooter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-2) var(--space-1);
+  border-top: 1px solid var(--border);
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-faint);
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  flex-shrink: 0;
+}
+.statusDotMuted {
+  background: var(--text-faint);
+}
+.statusDotWarning {
+  background: var(--warning);
+}
+
+/* content */
+
+.content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-6) var(--space-8) var(--space-10);
+  min-height: 0;
+}
+
+/* Content is comfortable to read on a 1080px window and does not sprawl on an
+   ultrawide monitor. */
+.contentInner {
+  max-width: 1120px;
+  margin: 0 auto;
+  animation: nudge-rise-in var(--duration-slow) var(--ease-out);
+}
+
+.pageHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.pageTitle {
+  font-size: var(--text-2xl);
+  font-weight: 650;
+  letter-spacing: -0.022em;
+}
+
+.pageSubtitle {
+  margin-top: var(--space-1);
+  font-size: var(--text-base);
+  color: var(--text-muted);
+}
+
+/* loading */
+
+.splash {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  gap: var(--space-4);
+  color: var(--text-faint);
+}
+
+.splashPulse {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--tone-move), var(--tone-water));
+  animation: nudge-pulse-ring 1.6s var(--ease-in-out) infinite;
+}

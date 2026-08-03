@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      `media-src` allows file: so a user-supplied notification sound can be
+      played from anywhere on disk. Nothing else may load from a remote origin.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src 'self' file: data:; connect-src 'self'"
+    />
+    <title>Nudge Audio Host</title>
+  </head>
+  <body>
+    <!-- Intentionally empty: this window never renders anything. -->
+    <script type="module" src="/src/sound.ts"></script>
+  </body>
+</html>
